@@ -1,7 +1,7 @@
 #pragma once
 #include "ConsoleGameMath.h"
 #include "ConsoleGameObject.h"
-
+// 
 class ConsoleGameScreen;
 class Player;
 class Boom : public ConsoleGameObject
