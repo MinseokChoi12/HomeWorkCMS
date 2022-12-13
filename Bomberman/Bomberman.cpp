@@ -3,20 +3,27 @@
 #include "Player.h"
 #include "GameEngineDebug.h"
 #include <conio.h>
+#include "Wall.h"
 
 ConsoleGameScreen Screen;
 Player MainPlayer;
+Wall wall;
 
 int main()
 {
 	LeckCheck();
 
-	Screen.ScreenInit({ 15, 10 }, L'¡á');
+	int4 MapSize = { 15, 10 };
+
+	Screen.ScreenInit(MapSize, L'¡¡');
+
 
 	while (true)
 	{
 		system("cls");
 		Screen.ScreenClear();
+
+		wall.CreateWall(MapSize);
 
 		bool End = MainPlayer.Update();
 

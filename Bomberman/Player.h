@@ -4,6 +4,7 @@
 //#include "Boom.h"
 
 class Boom;
+class Wall;
 class ConsoleGameScreen;
 class Player : public ConsoleGameObject
 {
