@@ -14,9 +14,9 @@ public:
 	Wall& operator=(Wall&& _Other) noexcept = delete;
 
 	void CreateWall(const int4& _Size);
-	static Wall** GetWallArr() { return WallArr; }
+	static Wall*** GetWallArr() { return WallArr; }
 
 private:
-	static Wall** WallArr;
+	static Wall*** WallArr;
 };
 

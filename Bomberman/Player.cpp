@@ -101,14 +101,17 @@ bool Player::Update()
 		}
 	}
 
-	/*for (int y = 0; y < 10; y++)
+	for (int y = 0; y < 10; y++)
 	{
 		for (int x = 0; x < 15; x++)
 		{
-			if (NextPos == Wall::GetWallArr()[y][x].GetPos())
+			if (Wall::GetWallArr()[y][x] == nullptr)
+				continue;
+
+			if (NextPos == Wall::GetWallArr()[y][x]->GetPos())
 				IsMove = false;
 		}
-	}*/
+	}
 
 	if (IsMove == true)
 	{
