@@ -63,6 +63,8 @@ public:
 
 		Count = _Count;
 
+		delete DataPtr;
+
 		DataPtr = new DataType[Count];
 	}
 
