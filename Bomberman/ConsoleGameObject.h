@@ -18,6 +18,8 @@ public:
 	wchar_t GetRenderChar() { return RenderChar; }
 	void SetRenderChar(wchar_t _Value) { RenderChar = _Value; }
 
+	void Render();
+
 private:
 	int4 Pos = { 0, 0 };
 	wchar_t RenderChar = L'¡¡';

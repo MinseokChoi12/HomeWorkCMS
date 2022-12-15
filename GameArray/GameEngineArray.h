@@ -1,5 +1,5 @@
 #pragma once
-#include <GameEngineDebug.h>
+#include "GameEngineDebug.h"
 
 // typedef int DataType;
 
@@ -36,12 +36,32 @@ public:
 	// delete Function
 	GameEngineArray(const GameEngineArray& _Other) = delete;
 	GameEngineArray(GameEngineArray&& _Other) noexcept = delete;
-	GameEngineArray& operator=(const GameEngineArray& _Other) = delete;
+	GameEngineArray& operator=(const GameEngineArray& _Other)
+	{
+		ReSize(_Other.Count);
+
+		for (size_t i = 0; i < Count; i++)
+		{
+			DataPtr[i] = _Other.DataPtr[i];
+		}
+
+		return *this;
+	}
+
 	GameEngineArray& operator=(GameEngineArray&& _Other) noexcept = delete;
 
 	size_t GetCount()
 	{
 		return Count;
+	}
+
+	void Clear()
+	{
+		if (nullptr != DataPtr)
+		{
+			delete[] DataPtr;
+			DataPtr = nullptr;
+		}
 	}
 
 	DataType& operator[](size_t _Index)
@@ -61,11 +81,35 @@ public:
 			MessageBoxAssert("배열의 크기가 0일수 없습니다.");
 		}
 
+		DataType* PrevData = DataPtr;
+
+		DataPtr = new DataType[_Count];
+
+		if (nullptr == PrevData)
+		{
+			Count = _Count;
+			return;
+		}
+
+		size_t CopySize = _Count;
+
+		if (Count < _Count)
+		{
+			CopySize = Count;
+		}
+
+		for (size_t i = 0; i < CopySize; i++)
+		{
+			DataPtr[i] = PrevData[i];
+		}
+
 		Count = _Count;
 
-		delete DataPtr;
-
-		DataPtr = new DataType[Count];
+		if (nullptr != PrevData)
+		{
+			delete[] PrevData;
+			PrevData = nullptr;
+		}
 	}
 
 

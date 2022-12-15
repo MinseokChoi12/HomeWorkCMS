@@ -1,10 +1,10 @@
 #pragma once
 #include "ConsoleGameMath.h"
 #include "ConsoleGameObject.h"
+#include <GameEngineArray.h>
 //#include "Boom.h"
 
 class Boom;
-class Wall;
 class ConsoleGameScreen;
 class Player : public ConsoleGameObject
 {
@@ -21,6 +21,6 @@ public:
 
 private:
 	int BoomUseCount = 0;
-	Boom* ArrBoomObject = nullptr;
+	GameEngineArray<Boom> ArrBoomObject;
 };
 

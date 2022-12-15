@@ -4,27 +4,21 @@
 #include "GameEngineDebug.h"
 #include "Boom.h"
 #include "Wall.h"
-#include "Map.h"
 
 Player::Player()
+	: ArrBoomObject(100)
 {
-	ArrBoomObject = new Boom[1000]();
-
 	SetRenderChar(L'＠');
 }
 
 Player::~Player()
 {
-	if (ArrBoomObject != nullptr)
-	{
-		delete[] ArrBoomObject;
-		ArrBoomObject = nullptr;
-	}
+
 }
 
 bool Player::Update()
 {
-	if (ArrBoomObject == nullptr)
+	if (ArrBoomObject.GetCount() == 0)
 	{
 		MessageBoxAssert("폭탄이 만들어지지 않았습니다");
 		return false;
@@ -94,25 +88,11 @@ bool Player::Update()
 		IsMove = false;
 	}
 
-	for (size_t i = 0; i < BoomUseCount; i++)
-	{
-		if ((ArrBoomObject[i].IsDeath() == false) && (ArrBoomObject[i].GetPos() == NextPos))
-		{
-			IsMove = false;
-		}
-	}
+	if (Boom::GetBoom(NextPos) != nullptr)
+		IsMove = false;
 
-	for (int y = 0; y < 10; y++)
-	{
-		for (int x = 0; x < 15; x++)
-		{
-			if (Map::GetWallArr()[y][x] == nullptr)
-				continue;
-
-			if (NextPos == Map::GetWallArr()[y][x]->GetPos())
-				IsMove = false;
-		}
-	}
+	if (Wall::GetIsWall(NextPos) == true)
+		IsMove = false;
 
 	if (IsMove == true)
 	{
