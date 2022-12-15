@@ -3,11 +3,11 @@
 #include "Player.h"
 #include "GameEngineDebug.h"
 #include <conio.h>
-#include "Wall.h"
+#include "Map.h"
 
 ConsoleGameScreen Screen;
 Player MainPlayer;
-Wall wall;
+Map MainMap;
 
 int main()
 {
@@ -23,7 +23,7 @@ int main()
 		system("cls");
 		Screen.ScreenClear();
 
-		wall.CreateWall(MapSize);
+		MainMap.CreateWall(MapSize);
 
 		bool End = MainPlayer.Update();
 
@@ -32,8 +32,10 @@ int main()
 
 		if (End == false)
 		{
+			MainMap.DestroyWall(MapSize);
 			printf_s("게임을 종료했습니다.");
 			break;
 		}
+		MainMap.DestroyWall(MapSize);
 	}
 }

@@ -4,6 +4,7 @@
 #include "GameEngineDebug.h"
 #include "Boom.h"
 #include "Wall.h"
+#include "Map.h"
 
 Player::Player()
 {
@@ -105,10 +106,10 @@ bool Player::Update()
 	{
 		for (int x = 0; x < 15; x++)
 		{
-			if (Wall::GetWallArr()[y][x] == nullptr)
+			if (Map::GetWallArr()[y][x] == nullptr)
 				continue;
 
-			if (NextPos == Wall::GetWallArr()[y][x]->GetPos())
+			if (NextPos == Map::GetWallArr()[y][x]->GetPos())
 				IsMove = false;
 		}
 	}

@@ -21,14 +21,17 @@ void Boom::Update()
 	}
 
 	if (Range > --Time)
-	{		
-		for (size_t i = 0; i < 4; i++)
+	{
+		for (int t = Range - Time; t > 0; t--)
 		{
-			int4 unitPos[4] = { {0,-1}, {1,0}, {0,1}, {-1,0} };
-			int4 Pos = GetPos() + unitPos[i] * (Range - Time - 1);
-			if (ConsoleGameScreen::GetMainScreen()->IsOver(Pos) != true)
-				ConsoleGameScreen::GetMainScreen()->SetPixelChar(Pos, L'¡Ú');
-		}		
+			for (size_t i = 0; i < 4; i++)
+			{
+				int4 unitPos[4] = { {0,-1}, {1,0}, {0,1}, {-1,0} };
+				int4 Pos = GetPos() + unitPos[i] * (t - 1);
+				if (ConsoleGameScreen::GetMainScreen()->IsOver(Pos) != true)
+					ConsoleGameScreen::GetMainScreen()->SetPixelChar(Pos, L'¡Ú');
+			}
+		}			
 	}	
 
 	ConsoleGameScreen::GetMainScreen()->SetPixelChar(GetPos(), GetRenderChar());
