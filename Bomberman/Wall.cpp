@@ -44,7 +44,7 @@ bool Wall::GetIsWall(int4 _Size)
 Wall::Wall()
 	: IsWall(false)
 {	
-	SetRenderChar(L'бс');
+	SetRenderChar(L'бр');
 }
 
 Wall::~Wall()

@@ -18,7 +18,7 @@ int main()
 {
 	LeckCheck();
 
-	Screen.ScreenInit(MapSize, L'¡¡');
+	Screen.ScreenInit(MapSize, L'¡á');
 
 	Boom::BoomMapInit(MapSize);
 	Wall::WallMapInit(MapSize);

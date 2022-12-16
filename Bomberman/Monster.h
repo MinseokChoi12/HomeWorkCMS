@@ -4,7 +4,6 @@
 #include <GameEngineArray.h>
 
 class ConsoleGameScreen;
-class Player;
 class Monster : public ConsoleGameObject
 {
 public:
