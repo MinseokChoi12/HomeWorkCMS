@@ -38,6 +38,7 @@ private:
 	static GameEngineArray<GameEngineArray<Boom*>>	BoomMap;
 
 	int Time = 20;
+	int CurRange = 0;
 	int Range = 4;
 };
 

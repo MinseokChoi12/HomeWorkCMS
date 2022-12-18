@@ -3,6 +3,7 @@
 #include "ConsoleGameScreen.h"
 #include "Player.h"
 #include "Wall.h"
+#include "Monster.h"
 #include <Windows.h>
 
 GameEngineArray<GameEngineArray<Boom*>> Boom::BoomMap;
@@ -47,29 +48,144 @@ Boom::~Boom()
 
 void Boom::Update()
 {
-	if (0 > Time)
+	if (CurRange >= Range)
 	{
 		return;
 	}
+
+	int4 BoomPos = GetPos();
+
+	BoomMap[BoomPos.Y][BoomPos.X] = this;
+
+	if (0 > --Time)
+	{
+		++CurRange;
+		// return;
+	}
+
+	// ÆøÅº ±×ÀÚÃ¼´Â ±×³É Ãâ·Â
+	int4 Pos = GetPos();
+	wchar_t MyChar = GetRenderChar();
+	ConsoleGameScreen::GetMainScreen()->SetPixelChar(Pos, MyChar);
 
 	bool LeftWall = false;
 	bool RightWall = false;
 	bool UpWall = false;
 	bool DownWall = false;
+	bool IsMonster = false;
 
-	if (Range > --Time)
+	for (int i = 1; i <= CurRange; i++)
 	{
-		for (int t = Range - Time; t > 0; t--)
-		{
-			for (size_t i = 0; i < 4; i++)
-			{
-				int4 unitPos[4] = { {0,-1}, {1,0}, {0,1}, {-1,0} };
-				int4 Pos = GetPos() + unitPos[i] * (t - 1);
-				if (ConsoleGameScreen::GetMainScreen()->IsOver(Pos) != true)
-					ConsoleGameScreen::GetMainScreen()->SetPixelChar(Pos, L'¡Ú');
-			}
-		}			
-	}	
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		int4 Left = Pos + int4{ -i, 0 };
 
-	ConsoleGameScreen::GetMainScreen()->SetPixelChar(GetPos(), GetRenderChar());
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Left) && true == Wall::GetIsWall(Left))
+		{
+			LeftWall = true;
+		}
+
+
+		if (false == LeftWall && false == ConsoleGameScreen::GetMainScreen()->IsOver(Left))
+		{
+			ConsoleGameScreen::GetMainScreen()->SetPixelChar(Left, L'¡ß');
+		}
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Left) && true == Monster::GetIsMonster(Left))
+		{
+			GameEngineArray<Monster>* AM = Monster::GetAllMonster();
+			for (size_t i = 0; i < AM->GetCount(); i++)
+			{
+				if ((*AM)[i].GetPos() == Left)
+				{
+					(*AM)[i].Off();
+					break;
+				}	
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		int4 Right = Pos + int4{ i, 0 };
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Right) && true == Wall::GetIsWall(Right))
+		{
+			RightWall = true;
+		}
+
+
+		if (false == RightWall && false == ConsoleGameScreen::GetMainScreen()->IsOver(Right))
+		{
+			ConsoleGameScreen::GetMainScreen()->SetPixelChar(Right, L'¡ß');
+		}
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Left) && true == Monster::GetIsMonster(Right))
+		{
+			GameEngineArray<Monster>* AM = Monster::GetAllMonster();
+			for (size_t i = 0; i < AM->GetCount(); i++)
+			{
+				if ((*AM)[i].GetPos() == Right)
+				{
+					(*AM)[i].Off();
+					break;
+				}
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		int4 Up = Pos + int4{ 0, i };
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Up) && true == Wall::GetIsWall(Up))
+		{
+			UpWall = true;
+		}
+		if (false == UpWall && false == ConsoleGameScreen::GetMainScreen()->IsOver(Up))
+		{
+			ConsoleGameScreen::GetMainScreen()->SetPixelChar(Up, L'¡ß');
+		}
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Left) && true == Monster::GetIsMonster(Up))
+		{
+			GameEngineArray<Monster>* AM = Monster::GetAllMonster();
+			for (size_t i = 0; i < AM->GetCount(); i++)
+			{
+				if ((*AM)[i].GetPos() == Up)
+				{
+					(*AM)[i].Off();
+					break;
+				}
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		int4 Down = Pos + int4{ 0, -i };
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Down) && true == Wall::GetIsWall(Down))
+		{
+			DownWall = true;
+		}
+
+		if (false == DownWall && false == ConsoleGameScreen::GetMainScreen()->IsOver(Down))
+		{
+			ConsoleGameScreen::GetMainScreen()->SetPixelChar(Down, L'¡ß');
+		}
+
+		if (false == ConsoleGameScreen::GetMainScreen()->IsOver(Left) && true == Monster::GetIsMonster(Down))
+		{
+			GameEngineArray<Monster>* AM = Monster::GetAllMonster();
+			for (size_t i = 0; i < AM->GetCount(); i++)
+			{
+				if ((*AM)[i].GetPos() == Down)
+				{
+					(*AM)[i].Off();
+					break;
+				}
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+	}
 }

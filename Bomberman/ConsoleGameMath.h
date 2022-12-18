@@ -2,6 +2,12 @@
 class int4
 {
 public:
+	static const int4 LEFT;
+	static const int4 RIGHT;
+	static const int4 UP;
+	static const int4 DOWN;
+
+public:
 	int X = 0;
 	int Y = 0;
 	int Z = 0;

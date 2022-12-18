@@ -20,7 +20,14 @@ public:
 
 	void Render();
 
+	bool GetIsUpdate() { return IsUpdate; }
+
+	void On() { IsUpdate = true; }
+	void Off() { IsUpdate = false; }
+
 private:
+	bool IsUpdate = true;
+
 	int4 Pos = { 0, 0 };
 	wchar_t RenderChar = L'¡¡';
 };

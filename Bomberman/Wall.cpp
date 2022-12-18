@@ -15,12 +15,14 @@ void Wall::WallMapInit(int4 _Size)
 		for (int x = 0; x < WallMap[y].GetCount(); x++)
 		{
 			WallMap[y][x].SetPos(int4{ x, y });
+
+			WallMap[y][x].Off();
 			if (y % 2 == 0)
 				continue;
 			if (x % 2 == 0)
 				continue;
 
-			WallMap[y][x].IsWall = true;
+			WallMap[y][x].On();
 		}
 	}
 }
@@ -31,6 +33,9 @@ void Wall::WallUpdata()
 	{
 		for (int x = 0; x < WallMap[y].GetCount(); x++)
 		{
+			if (false == WallMap[y][x].GetIsUpdate())
+				continue;
+
 			WallMap[y][x].Updata();
 		}
 	}
@@ -38,11 +43,10 @@ void Wall::WallUpdata()
 
 bool Wall::GetIsWall(int4 _Size)
 {
-	return WallMap[_Size.Y][_Size.X].IsWall;
+	return WallMap[_Size.Y][_Size.X].GetIsUpdate();
 }
 
 Wall::Wall()
-	: IsWall(false)
 {	
 	SetRenderChar(L'бр');
 }
@@ -53,8 +57,5 @@ Wall::~Wall()
 
 void Wall::Updata()
 {
-	if (false == IsWall)
-		return;
-
 	Render();
 }

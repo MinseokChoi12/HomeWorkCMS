@@ -28,7 +28,6 @@ public:
 	void Updata();
 
 protected:
-	bool IsWall;
 
 private:
 	static GameEngineArray<GameEngineArray<Wall>> WallMap;

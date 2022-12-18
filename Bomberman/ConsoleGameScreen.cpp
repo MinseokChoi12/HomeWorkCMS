@@ -154,12 +154,12 @@ bool ConsoleGameScreen::IsOver(int4 _Pos)
 		return true;
 	}
 
-	if (ScreenSize.X < _Pos.X - 1)
+	if (ScreenSize.X <= _Pos.X)
 	{
 		return true;
 	}
 
-	if (ScreenSize.Y < _Pos.Y - 1)
+	if (ScreenSize.Y <= _Pos.Y)
 	{
 		return true;
 	}

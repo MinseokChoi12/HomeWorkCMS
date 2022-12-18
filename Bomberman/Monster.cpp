@@ -1,62 +1,85 @@
 #include "Monster.h"
-#include <conio.h>
 #include "ConsoleGameScreen.h"
-#include "GameEngineDebug.h"
-#include "Boom.h"
 #include "Wall.h"
+#include "Boom.h"
+
+GameEngineArray<Monster> Monster::AllMonster(10);
+size_t Monster::MonsterUpdateCount = 0;
+
+void  Monster::AllMonsterInit(wchar_t _BaseChar)
+{
+	for (size_t i = 0; i < AllMonster.GetCount(); i++)
+	{
+		AllMonster[i].Off();
+		AllMonster[i].SetRenderChar(_BaseChar);
+	}
+}
+
+Monster* Monster::CreateMonster(int4 _Pos, int4 _Dir)
+{
+	Monster* ReturnMonster = &AllMonster[MonsterUpdateCount];
+	AllMonster[MonsterUpdateCount].SetPos(_Pos);
+	AllMonster[MonsterUpdateCount].SetDir(_Dir);
+	AllMonster[MonsterUpdateCount++].On();
+
+	return ReturnMonster;
+}
+
+void Monster::AllMonsterUpdate()
+{
+	for (size_t i = 0; i < AllMonster.GetCount(); i++)
+	{
+		if (false == AllMonster[i].GetIsUpdate())
+			continue;
+
+		AllMonster[i].Update();
+	}
+}
+
+GameEngineArray<Monster>* Monster::GetAllMonster()
+{
+	return &AllMonster;
+}
+
+bool Monster::GetIsMonster(int4 _Size)
+{
+	for (size_t i = 0; i < AllMonster.GetCount(); i++)
+	{
+		if (_Size == AllMonster[i].GetPos())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 
 Monster::Monster()
 {
-	SetRenderChar(L'¡×');
-	SetPos(int4{ 6, 6 });
 }
 
 Monster::~Monster()
 {
 }
 
-void Monster::Update(int4 _Size, int _num)
+void Monster::Init()
 {
-	if (_num == 1)
+
+}
+
+void Monster::Update()
+{
+	int4 Pos = GetPos();
+	int4 MovePos = Pos + Dir;
+
+	if (ConsoleGameScreen::GetMainScreen()->IsOver(MovePos))
 	{
-		if (dir == 1.0f && GetPos().X >= _Size.X - 1)
-		{
-			dir = -1.0f;
-			Time = 0;
-		}
-		else if (dir == -1 && GetPos().X <= 0)
-		{
-			dir = 1.0f;
-			Time = 0;
-		}
-
-		Time += dir * 0.1f;
-
-		int4 Pos = GetPos();
-		Pos.X += (int)Time;
-		SetPos(Pos);
+		Dir.X *= -1;
+		Dir.Y *= -1;
 	}
-	
-	if (_num == 2)
-	{
-		if (dir == 1.0f && GetPos().Y >= _Size.Y - 1)
-		{
-			dir = -1.0f;
-			Time = 0;
-		}
-		else if (dir == -1 && GetPos().Y <= 0)
-		{
-			dir = 1.0f;
-			Time = 0;
-		}
 
-		Time += dir * 0.1f;
-
-		int4 Pos = GetPos();
-		Pos.Y += (int)Time;
-		SetPos(Pos);
-	}
+	const int4 NextPos = Pos + Dir;
 	
-	
-	ConsoleGameScreen::GetMainScreen()->SetPixelChar(GetPos(), GetRenderChar());
+	SetPos(NextPos);
+	Render();
 }

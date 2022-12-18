@@ -9,8 +9,6 @@
 
 ConsoleGameScreen Screen;
 Player MainPlayer;
-Monster Monster1;
-Monster Monster2;
 
 int4 MapSize = { 15, 11 };
 
@@ -22,6 +20,11 @@ int main()
 
 	Boom::BoomMapInit(MapSize);
 	Wall::WallMapInit(MapSize);
+	Monster::AllMonsterInit(L'¡×');
+
+	Monster::CreateMonster(int4{ 0, 2 }, int4::LEFT);
+	Monster::CreateMonster(int4{ 0, 3 }, int4::UP);
+	Monster::CreateMonster(int4{ 0, 4 }, int4::RIGHT);
 
 	while (true)
 	{
@@ -29,10 +32,9 @@ int main()
 		Screen.ScreenClear();
 
 		Wall::WallUpdata();
+		Monster::AllMonsterUpdate();
 
 		bool End = MainPlayer.Update();
-		Monster1.Update(MapSize, 1);
-		Monster2.Update(MapSize, 2);
 
 		Screen.ScreenRender();
 		Sleep(100);
