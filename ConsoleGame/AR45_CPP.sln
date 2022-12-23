@@ -5,9 +5,13 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bomberman", "Bomberman\Bomberman.vcxproj", "{E6439A4F-A556-481C-A0CF-8893151564D5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameArray", "GameArray\GameArray.vcxproj", "{DF2FED8B-6F18-4700-8485-9C16E35C61CC}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineBase", "GameEngineBase\GameEngineBase.vcxproj", "{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnakeGame", "SnakeGame\SnakeGame.vcxproj", "{04E6AE14-7AB6-45B5-B24D-014941728673}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleGame", "ConsoleGame", "{72CB4045-3B80-4C83-A49D-FEFCB630C0F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameEngine", "GameEngine", "{E60507FC-0E1E-4CD6-BB08-574AC0C09EEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +29,6 @@ Global
 		{E6439A4F-A556-481C-A0CF-8893151564D5}.Release|x64.Build.0 = Release|x64
 		{E6439A4F-A556-481C-A0CF-8893151564D5}.Release|x86.ActiveCfg = Release|Win32
 		{E6439A4F-A556-481C-A0CF-8893151564D5}.Release|x86.Build.0 = Release|Win32
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Debug|x64.ActiveCfg = Debug|x64
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Debug|x64.Build.0 = Debug|x64
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Debug|x86.ActiveCfg = Debug|Win32
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Debug|x86.Build.0 = Debug|Win32
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Release|x64.ActiveCfg = Release|x64
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Release|x64.Build.0 = Release|x64
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Release|x86.ActiveCfg = Release|Win32
-		{DF2FED8B-6F18-4700-8485-9C16E35C61CC}.Release|x86.Build.0 = Release|Win32
 		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}.Debug|x64.ActiveCfg = Debug|x64
 		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}.Debug|x64.Build.0 = Debug|x64
 		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}.Debug|x86.ActiveCfg = Debug|Win32
@@ -41,9 +37,22 @@ Global
 		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}.Release|x64.Build.0 = Release|x64
 		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}.Release|x86.ActiveCfg = Release|Win32
 		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA}.Release|x86.Build.0 = Release|Win32
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Debug|x64.ActiveCfg = Debug|x64
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Debug|x64.Build.0 = Debug|x64
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Debug|x86.ActiveCfg = Debug|Win32
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Debug|x86.Build.0 = Debug|Win32
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Release|x64.ActiveCfg = Release|x64
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Release|x64.Build.0 = Release|x64
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Release|x86.ActiveCfg = Release|Win32
+		{04E6AE14-7AB6-45B5-B24D-014941728673}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6439A4F-A556-481C-A0CF-8893151564D5} = {72CB4045-3B80-4C83-A49D-FEFCB630C0F2}
+		{6A52DE6F-E70A-40A0-B7FB-2B2B276CC3DA} = {E60507FC-0E1E-4CD6-BB08-574AC0C09EEB}
+		{04E6AE14-7AB6-45B5-B24D-014941728673} = {72CB4045-3B80-4C83-A49D-FEFCB630C0F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D15C36A-4ADA-4CC1-B097-871BF0A961FC}
