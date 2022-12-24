@@ -48,5 +48,10 @@ public:
 	{
 		return X == _Value.X && Y == _Value.Y;
 	}
+
+	bool operator!=(const int4& _Value)
+	{
+		return !(X == _Value.X && Y == _Value.Y);
+	}
 };
 

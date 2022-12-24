@@ -1,15 +1,12 @@
 #include "Head.h"
+#include <iostream>
 #include <ConsoleGameScreen.h>
 #include <GameEngineInput.h>
 #include <conio.h>
 #include "Body.h"
 
 Head* Head::CurHead = nullptr;
-
-Head* Head::GetCurHead()
-{
-	return CurHead;
-}
+bool Head::GameOver = false;
 
 Head::Head()
 	: Part(L'¡ß')
@@ -75,6 +72,12 @@ void Head::Update()
 			IsMove = false;
 		}
 
+		if (IsBody(this, NextPos))
+		{
+			int a = 0;
+			GameOver = true;
+		}
+
 		if (true == IsMove)
 		{
 			Part* LastPart = GetLastPart();
@@ -88,8 +91,35 @@ void Head::Update()
 				Body::GetCurBody()->SetPos(PrevPos);
 				Body::GetCurBody()->SetRenderChar(L'¡Ü');
 				LastPart->SetBack(Body::GetCurBody());
-				Body::CreatBody();
+
+				while (true)
+				{
+					srand(time(nullptr));
+					int Body_X = rand() % ConsoleGameScreen::GetMainScreen()->GetScreenSize().X;
+					int Body_Y = rand() % ConsoleGameScreen::GetMainScreen()->GetScreenSize().Y;
+
+					int4 BodyPos = { Body_X, Body_Y };
+					int4 NewBodyPos = Body::EmptyPos(this, BodyPos);
+
+					if (NewBodyPos != int4{ -1,-1 })
+					{
+						Body::CreatBody(NewBodyPos);
+						break;
+					}
+				}
 			}
 		}
 	}
+}
+
+bool Head::IsBody(Part* _Part, int4 _NextPos)
+{
+	Part* NextBody = _Part->GetBack();
+
+	if (NextBody == nullptr)
+		return false;
+	else if (NextBody->GetPos() == _NextPos)
+		return true;
+	else
+		IsBody(NextBody, _NextPos);
 }

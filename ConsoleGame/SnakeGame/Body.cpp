@@ -6,38 +6,23 @@
 
 Body* Body::CurBody = nullptr;
 
-void Body::CreatBody()
+void Body::CreatBody(int4 _BodyPos)
 {
-    srand(time(nullptr));
     CurBody = new Body();
-    int Body_X = rand() % ConsoleGameScreen::GetMainScreen()->GetScreenSize().X;
-    int Body_Y = rand() % ConsoleGameScreen::GetMainScreen()->GetScreenSize().Y;
-
-    int4 BodyPos = { Body_X, Body_Y };
-
-    Part* CurPart = Head::GetCurHead();
-    int4 CurPartPos = CurPart->GetPos();
     
-    if (IsEmpty(CurPart, BodyPos))
-        CurBody->SetPos(BodyPos);
-    else
-    {
-        delete CurBody;
-        CurBody = nullptr;
-        CreatBody();
-    } 
+    CurBody->SetPos(_BodyPos);
 }
 
-bool Body::IsEmpty(Part* _CurPart, int4 _BodyPos)
+int4 Body::EmptyPos(Part* _CurPart, int4 _BodyPos)
 {
     int4 CurPartPos = _CurPart->GetPos();
     if (_CurPart != nullptr && _BodyPos == CurPartPos)
-        return false;
+        return int4{ -1, -1 };
 
     if (_CurPart->GetBack() == nullptr)
-        return true;
+        return _BodyPos;
    
-    IsEmpty(_CurPart->GetBack(), _BodyPos);
+    EmptyPos(_CurPart->GetBack(), _BodyPos);
 }
 
 Body* Body::GetCurBody()

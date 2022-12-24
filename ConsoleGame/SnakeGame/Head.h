@@ -4,7 +4,7 @@
 class Head : public Part
 {
 public:
-	static Head* GetCurHead();
+	static bool GetGameOver() { return GameOver; };
 
 	Head();
 	~Head();
@@ -18,6 +18,8 @@ protected:
 	void Update() override;
 
 private:
+	bool IsBody(Part* _Part,int4 _NextPos);
 	static Head* CurHead;
+	static bool GameOver;
 };
 

@@ -4,9 +4,9 @@
 class Body : public Part
 {
 public:
-	static void CreatBody();
+	static void CreatBody(int4 _BodyPos);
 	static Body* GetCurBody();
-	static bool IsEmpty(Part* _CurPart, int4 _BodyPos);
+	static int4 EmptyPos(Part* _CurPart, int4 _BodyPos);
 
 	~Body();
 

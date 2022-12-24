@@ -17,7 +17,13 @@ int main()
 
 	Screen.ScreenInit(ScreenSize, L'бр');
 
-	Body::CreatBody();
+	srand(time(nullptr));
+	int Body_X = rand() % ConsoleGameScreen::GetMainScreen()->GetScreenSize().X;
+	int Body_Y = rand() % ConsoleGameScreen::GetMainScreen()->GetScreenSize().Y;
+
+	int4 BodyPos = { Body_X, Body_Y };
+
+	Body::CreatBody(BodyPos);
 
 	while (true)
 	{
@@ -41,6 +47,9 @@ int main()
 
 		Screen.ScreenRender();
 		Sleep(100);
+
+		if (Head::GetGameOver())
+			break;
 	}
 
 	if (nullptr != StartPart)
