@@ -5,6 +5,7 @@ class Head : public Part
 {
 public:
 	static bool GetGameOver() { return GameOver; };
+	
 
 	Head();
 	~Head();
@@ -13,6 +14,7 @@ public:
 	Head(Head&& _Other) noexcept = delete;
 	Head& operator=(const Head& _Other) = delete;
 	Head& operator=(Head&& _Other) noexcept = delete;
+
 
 protected:
 	void Update() override;

@@ -52,6 +52,9 @@ int main()
 			break;
 	}
 
+	Part* LastPart = StartPart->GetLastPart();
+	Part::DestroyPart(LastPart, StartPart);
+
 	if (nullptr != StartPart)
 	{
 		delete StartPart;

@@ -4,6 +4,8 @@
 class Part : public ConsoleGameObject
 {
 public:
+	static void DestroyPart(Part* _LastPart, Part* _StartPart);
+
 	Part();
 	Part(wchar_t _RenderChar);
 	~Part();
@@ -33,14 +35,6 @@ public:
 			return this;
 
 		return Back->GetLastPart();
-	}
-
-	int4 GetLastPartPos()
-	{
-		if (nullptr == Back)
-			return int4{ 0 ,0 };
-
-		return Back->GetLastPartPos();
 	}
 
 protected:

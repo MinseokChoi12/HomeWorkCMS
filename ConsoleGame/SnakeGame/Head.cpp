@@ -18,6 +18,8 @@ Head::~Head()
 {
 }
 
+
+
 void Head::Update()
 {
 	if (true == GameEngineInput::GetIsInput())

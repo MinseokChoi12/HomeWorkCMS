@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Bomberman.cpp" />
-    <ClCompile Include="GameEngineDebug.cpp">
-      <Filter>00.Base</Filter>
-    </ClCompile>
     <ClCompile Include="ConsoleGameMath.cpp">
       <Filter>01.Engine</Filter>
     </ClCompile>
@@ -26,22 +23,22 @@
     <ClCompile Include="Monster.cpp">
       <Filter>02.Contents</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineDebug.cpp">
+      <Filter>00.Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="00.Base">
-      <UniqueIdentifier>{1e2033c9-b380-4834-ac6d-220718f4581b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Engine">
       <UniqueIdentifier>{bc621855-295d-49e1-a8e2-47e56ee2a40c}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.Contents">
       <UniqueIdentifier>{bb146c1d-a0bd-4323-a7c3-392b2c8ee6e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.Base">
+      <UniqueIdentifier>{ebf7d44d-3d16-41cb-afd5-c3b4e2eb5f86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngineDebug.h">
-      <Filter>00.Base</Filter>
-    </ClInclude>
     <ClInclude Include="ConsoleGameMath.h">
       <Filter>01.Engine</Filter>
     </ClInclude>
@@ -62,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>02.Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDebug.h">
+      <Filter>00.Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

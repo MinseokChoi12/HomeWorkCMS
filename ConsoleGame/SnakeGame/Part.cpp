@@ -1,5 +1,24 @@
 #include "Part.h"
 
+void Part::DestroyPart(Part* _LastPart, Part* _StartPart)
+{
+	if (_LastPart->GetFront() == nullptr)
+		return;
+
+	if (_LastPart->GetFront() == _StartPart)
+	{
+		delete _LastPart;
+		_LastPart = nullptr;
+
+		return;
+	}
+
+	_LastPart = _LastPart->GetFront();
+	delete _LastPart->GetBack();
+
+	DestroyPart(_LastPart, _StartPart);
+}
+
 Part::Part()
 {
 }
