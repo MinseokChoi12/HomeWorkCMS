@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameEngine", "GameEngine", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "List", "List\List.vcxproj", "{D930E62C-5A65-4FE4-A125-C516C99BE2A5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map", "Map\Map.vcxproj", "{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -55,6 +57,14 @@ Global
 		{D930E62C-5A65-4FE4-A125-C516C99BE2A5}.Release|x64.Build.0 = Release|x64
 		{D930E62C-5A65-4FE4-A125-C516C99BE2A5}.Release|x86.ActiveCfg = Release|Win32
 		{D930E62C-5A65-4FE4-A125-C516C99BE2A5}.Release|x86.Build.0 = Release|Win32
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Debug|x64.ActiveCfg = Debug|x64
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Debug|x64.Build.0 = Debug|x64
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Debug|x86.ActiveCfg = Debug|Win32
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Debug|x86.Build.0 = Debug|Win32
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Release|x64.ActiveCfg = Release|x64
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Release|x64.Build.0 = Release|x64
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Release|x86.ActiveCfg = Release|Win32
+		{E5B25DDD-7DD6-47BE-8792-DBAC2E128823}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
